@@ -11,47 +11,43 @@ import UIKit
 class LineView: UIView {
 
     var linePoints = [CGPoint]()
-    var aCircle: Circle?{
-        didSet{
-            setNeedsDisplay()
-        }
-    }
+    var lineThickness: CGFloat!
+    var penColor: UIColor!
     
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, thickness: CGFloat, color: UIColor) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
-        
+        penColor = color
+        lineThickness = thickness
     }
     
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
-        // Drawing code
         
         var path = UIBezierPath()
         
         drawDot(center: linePoints[0])
-        print("\(linePoints)")
+        
         if linePoints.count > 2{
             path = createQuadPath(points: linePoints)
             path.move(to: linePoints[0])
             path.close()
-            path.lineWidth = aCircle!.radius
-            UIColor.blue.set()
+            path.lineWidth = lineThickness
+            penColor.set()
             path.stroke()
             
         }
+        
         drawDot(center: linePoints[linePoints.count-1])
 
     }
     
-    func drawDot(center: CGPoint) {
-        UIColor.blue.setFill()
+    private func drawDot(center: CGPoint) {
+        penColor.setFill()
         
         let path = UIBezierPath()
-        path.addArc(withCenter: center, radius: aCircle!.radius/2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        path.addArc(withCenter: center, radius: lineThickness/2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
         path.fill()
     }
     

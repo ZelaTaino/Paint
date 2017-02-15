@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377866561E54CEDB002C514B /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377866551E54CEDB002C514B /* DrawingPad.swift */; };
+		377866581E54FD57002C514B /* colorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377866571E54FD57002C514B /* colorButton.swift */; };
 		378FE3A11E54269500D6EC1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378FE3A01E54269500D6EC1C /* AppDelegate.swift */; };
 		378FE3A31E54269500D6EC1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378FE3A21E54269500D6EC1C /* ViewController.swift */; };
 		378FE3A61E54269500D6EC1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378FE3A41E54269500D6EC1C /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		377866551E54CEDB002C514B /* DrawingPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
+		377866571E54FD57002C514B /* colorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colorButton.swift; sourceTree = "<group>"; };
 		378FE39D1E54269500D6EC1C /* Draw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Draw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378FE3A01E54269500D6EC1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		378FE3A21E54269500D6EC1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,11 +113,13 @@
 			children = (
 				378FE3A01E54269500D6EC1C /* AppDelegate.swift */,
 				378FE3A21E54269500D6EC1C /* ViewController.swift */,
+				377866551E54CEDB002C514B /* DrawingPad.swift */,
 				378FE3D51E54356000D6EC1C /* LineView.swift */,
 				378FE3D71E54384800D6EC1C /* Functions.swift */,
 				378FE3D31E542C7B00D6EC1C /* CircleView.swift */,
 				378FE3D11E542B7900D6EC1C /* Circle.swift */,
 				378FE3A41E54269500D6EC1C /* Main.storyboard */,
+				377866571E54FD57002C514B /* colorButton.swift */,
 				378FE3AA1E54269500D6EC1C /* Assets.xcassets */,
 				378FE3AC1E54269500D6EC1C /* LaunchScreen.storyboard */,
 				378FE3AF1E54269500D6EC1C /* Info.plist */,
@@ -278,6 +284,8 @@
 				378FE3D41E542C7B00D6EC1C /* CircleView.swift in Sources */,
 				378FE3D61E54356000D6EC1C /* LineView.swift in Sources */,
 				378FE3D81E54384800D6EC1C /* Functions.swift in Sources */,
+				377866581E54FD57002C514B /* colorButton.swift in Sources */,
+				377866561E54CEDB002C514B /* DrawingPad.swift in Sources */,
 				378FE3D21E542B7900D6EC1C /* Circle.swift in Sources */,
 				378FE3A31E54269500D6EC1C /* ViewController.swift in Sources */,
 				378FE3A11E54269500D6EC1C /* AppDelegate.swift in Sources */,
@@ -523,6 +531,7 @@
 				378FE3CA1E54269600D6EC1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		378FE3CB1E54269600D6EC1C /* Build configuration list for PBXNativeTarget "DrawTests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +540,7 @@
 				378FE3CD1E54269600D6EC1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		378FE3CE1E54269600D6EC1C /* Build configuration list for PBXNativeTarget "DrawUITests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +549,7 @@
 				378FE3D01E54269600D6EC1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
