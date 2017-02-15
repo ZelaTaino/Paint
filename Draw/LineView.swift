@@ -35,9 +35,10 @@ class LineView: UIView {
         drawDot(center: linePoints[0])
         print("\(linePoints)")
         if linePoints.count > 2{
-            print("more than one point")
-            path.lineWidth = 100
             path = createQuadPath(points: linePoints)
+            path.move(to: linePoints[0])
+            path.close()
+            path.lineWidth = aCircle!.radius
             UIColor.blue.set()
             path.stroke()
             
@@ -50,8 +51,7 @@ class LineView: UIView {
         UIColor.blue.setFill()
         
         let path = UIBezierPath()
-        
-        path.addArc(withCenter: center, radius: aCircle!.radius, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        path.addArc(withCenter: center, radius: aCircle!.radius/2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
         path.fill()
     }
     
