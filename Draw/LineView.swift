@@ -11,15 +11,13 @@ import UIKit
 class LineView: UIView {
 
     var linePoints = [CGPoint]()
-    var lineThickness: CGFloat!
-    var penColor: UIColor!
     
+    var aPen: Pen!
     
-    init(frame: CGRect, thickness: CGFloat, color: UIColor) {
+    init(frame: CGRect, pen: Pen) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
-        penColor = color
-        lineThickness = thickness
+        aPen = pen
     }
     
     
@@ -33,8 +31,8 @@ class LineView: UIView {
             path = createQuadPath(points: linePoints)
             path.move(to: linePoints[0])
             path.close()
-            path.lineWidth = lineThickness
-            penColor.set()
+            path.lineWidth = aPen.getThickness()
+            aPen.getColor().set()
             path.stroke()
             
         }
@@ -44,10 +42,10 @@ class LineView: UIView {
     }
     
     private func drawDot(center: CGPoint) {
-        penColor.setFill()
+        aPen.getColor().setFill()
         
         let path = UIBezierPath()
-        path.addArc(withCenter: center, radius: lineThickness/2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        path.addArc(withCenter: center, radius: aPen.getThickness()/2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
         path.fill()
     }
     

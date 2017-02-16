@@ -11,23 +11,17 @@ import UIKit
 class DrawingPad: UIView {
     
     var lineBegins = CGPoint.zero
-    var lineThickness: CGFloat!
     var penColor: UIColor!
     var aLine: LineView?
+    var aPen: Pen!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("\(aLine?.lineThickness)")
         guard let touchPoint = touches.first?.location(in: self) else { return }
-        print("\(touchPoint)")
-        
         lineBegins = touchPoint
         let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        aLine = LineView(frame: frame, thickness: lineThickness, color: penColor)
+        aLine = LineView(frame: frame, pen: aPen)
         aLine?.linePoints.append(touchPoint)
-        //aLine?.lineThickness = 10
         self.addSubview(aLine!)
-        
-        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -48,15 +42,9 @@ class DrawingPad: UIView {
     }
     
     func undo(){
-        self.subviews.last!.removeFromSuperview()
-    }
-    
-    func adjustThickness(thickness: CGFloat){
-        lineThickness = thickness
-    }
-    
-    func changeColor(color: UIColor){
-        penColor = color
+        if self.subviews.last != self.subviews.first{
+            self.subviews.last!.removeFromSuperview()
+        }
     }
 
 

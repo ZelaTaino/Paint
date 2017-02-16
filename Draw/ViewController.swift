@@ -8,37 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-//    var circleCenter = CGPoint.zero
-//    var aCircle: CircleView?
-//
-//    var lineBegins = CGPoint.zero
-//    var aLine: LineView?
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    
-    
+    var pen:Pen!
+    let imagePicker = UIImagePickerController()
     @IBOutlet weak var drawPad: DrawingPad!
     @IBOutlet weak var thicknessSlider: UISlider!
-    
-    
-    
-    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var loadButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        drawPad.adjustThickness(thickness: CGFloat(thicknessSlider.value))
-        drawPad.changeColor(color: UIColor.init(red: 20/255, green: 160/255, blue: 220/255, alpha: 1))
-        
+        pen = Pen(penColor: UIColor.init(red: 20/255, green: 160/255, blue: 220/255, alpha: 1), penThickness: CGFloat(thicknessSlider.value))
+        drawPad.aPen = pen
+        imagePicker.delegate = self
+        imageView.isHidden = true
     }
-    
-    @IBAction func colorPressed(_ sender: UIButton) {
-        drawPad.changeColor(color: sender.backgroundColor!)
-    }
-    
-    
     
     @IBAction func clearPressed(_ sender: UIButton) {
         drawPad.clear()
@@ -49,11 +35,44 @@ class ViewController: UIViewController {
         drawPad.undo()
     }
     
-    
-    @IBAction func thicknessChanged(_ sender: UISlider) {
-        drawPad.adjustThickness(thickness: CGFloat(sender.value));
+        @IBAction func colorPressed(_ sender: UIButton) {
+        pen.changeColor(penColor: sender.backgroundColor!)
     }
     
+    @IBAction func thicknessChanged(_ sender: UISlider) {
+        pen.adjustThickness(penThickness: CGFloat(sender.value));
+    }
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake{
+            drawPad.clear()
+        }
+    }
+    
+    @IBAction func loadPressed(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Load"{
+            sender.setTitle("Remove", for: .normal)
+            imageView.isHidden = false
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .camera
+            imagePicker.cameraCaptureMode = .photo
+            imagePicker.modalPresentationStyle = .fullScreen
+            present(imagePicker, animated: true, completion: nil)
+        }else{
+            sender.setTitle("Load", for: .normal)
+            imageView.isHidden = true
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        loadPressed(loadButton)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
