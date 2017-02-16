@@ -37,8 +37,8 @@ class DrawingPad: UIView {
     
     func clear(){
         for v in self.subviews{
-            if self.subviews.last != self.subviews.first{
-            v.removeFromSuperview()
+            if v != self.subviews.first{
+                v.removeFromSuperview()
             }
         }
     }
